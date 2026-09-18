@@ -401,8 +401,8 @@ function ChartPanel({ title, subtitle, children }: { title: string; subtitle: st
 function AppointmentScreen() {
   const dates = ["21 sept.", "22 sept.", "23 sept.", "24 sept.", "25 sept.", "28 sept."];
   const times = ["09:00", "10:00", "11:30", "13:00", "14:30", "16:00"];
-  const [date, setDate] = useState(dates[1]);
-  const [time, setTime] = useState(times[1]);
+  const [date, setDate] = useState("22 sept.");
+  const [time, setTime] = useState("10:00");
   const [confirmed, setConfirmed] = useState(false);
 
   return (
