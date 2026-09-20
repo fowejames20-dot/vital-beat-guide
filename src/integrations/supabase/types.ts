@@ -14,7 +14,215 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      appointments: {
+        Row: {
+          created_at: string
+          doctor: string
+          id: string
+          mode: string
+          notes: string | null
+          reason: string
+          scheduled_date: string
+          scheduled_time: string
+          status: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          doctor?: string
+          id?: string
+          mode?: string
+          notes?: string | null
+          reason?: string
+          scheduled_date: string
+          scheduled_time: string
+          status?: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          doctor?: string
+          id?: string
+          mode?: string
+          notes?: string | null
+          reason?: string
+          scheduled_date?: string
+          scheduled_time?: string
+          status?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      devices: {
+        Row: {
+          battery: number
+          connected: boolean
+          created_at: string
+          id: string
+          last_sync: string
+          name: string
+          user_id: string
+        }
+        Insert: {
+          battery?: number
+          connected?: boolean
+          created_at?: string
+          id?: string
+          last_sync?: string
+          name?: string
+          user_id: string
+        }
+        Update: {
+          battery?: number
+          connected?: boolean
+          created_at?: string
+          id?: string
+          last_sync?: string
+          name?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      measurements: {
+        Row: {
+          cholesterol: number
+          created_at: string
+          diastolic: number
+          glucose: number
+          heart_rate: number | null
+          id: string
+          measured_at: string
+          systolic: number
+          user_id: string
+        }
+        Insert: {
+          cholesterol: number
+          created_at?: string
+          diastolic: number
+          glucose: number
+          heart_rate?: number | null
+          id?: string
+          measured_at?: string
+          systolic: number
+          user_id: string
+        }
+        Update: {
+          cholesterol?: number
+          created_at?: string
+          diastolic?: number
+          glucose?: number
+          heart_rate?: number | null
+          id?: string
+          measured_at?: string
+          systolic?: number
+          user_id?: string
+        }
+        Relationships: []
+      }
+      medication_logs: {
+        Row: {
+          id: string
+          log_date: string
+          medication_id: string
+          scheduled_time: string
+          taken_at: string
+          user_id: string
+        }
+        Insert: {
+          id?: string
+          log_date?: string
+          medication_id: string
+          scheduled_time: string
+          taken_at?: string
+          user_id: string
+        }
+        Update: {
+          id?: string
+          log_date?: string
+          medication_id?: string
+          scheduled_time?: string
+          taken_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "medication_logs_medication_id_fkey"
+            columns: ["medication_id"]
+            isOneToOne: false
+            referencedRelation: "medications"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      medications: {
+        Row: {
+          active: boolean
+          created_at: string
+          dosage: string
+          id: string
+          name: string
+          notes: string | null
+          times: string[]
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          active?: boolean
+          created_at?: string
+          dosage?: string
+          id?: string
+          name: string
+          notes?: string | null
+          times?: string[]
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          active?: boolean
+          created_at?: string
+          dosage?: string
+          id?: string
+          name?: string
+          notes?: string | null
+          times?: string[]
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          age: number | null
+          condition: string | null
+          created_at: string
+          full_name: string
+          id: string
+          sex: string | null
+          updated_at: string
+        }
+        Insert: {
+          age?: number | null
+          condition?: string | null
+          created_at?: string
+          full_name?: string
+          id: string
+          sex?: string | null
+          updated_at?: string
+        }
+        Update: {
+          age?: number | null
+          condition?: string | null
+          created_at?: string
+          full_name?: string
+          id?: string
+          sex?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
