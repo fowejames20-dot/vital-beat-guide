@@ -12,8 +12,12 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as AuthRouteImport } from './routes/auth'
+import { Route as AuthenticatedContactRouteImport } from './routes/_authenticated/contact'
+import { Route as AuthenticatedInformationsRouteImport } from './routes/_authenticated/informations'
+import { Route as AuthenticatedMedicamentsRouteImport } from './routes/_authenticated/medicaments'
 import { Route as AuthenticatedMontreRouteImport } from './routes/_authenticated/montre'
 import { Route as AuthenticatedProfilRouteImport } from './routes/_authenticated/profil'
+import { Route as AuthenticatedRendezVousRouteImport } from './routes/_authenticated/rendez-vous'
 import { Route as AuthenticatedResultatsRouteImport } from './routes/_authenticated/resultats'
 
 const IndexRoute = IndexRouteImport.update({
@@ -30,6 +34,23 @@ const AuthRoute = AuthRouteImport.update({
   path: '/auth',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthenticatedContactRoute = AuthenticatedContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedInformationsRoute =
+  AuthenticatedInformationsRouteImport.update({
+    id: '/informations',
+    path: '/informations',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedMedicamentsRoute =
+  AuthenticatedMedicamentsRouteImport.update({
+    id: '/medicaments',
+    path: '/medicaments',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 const AuthenticatedMontreRoute = AuthenticatedMontreRouteImport.update({
   id: '/montre',
   path: '/montre',
@@ -38,6 +59,11 @@ const AuthenticatedMontreRoute = AuthenticatedMontreRouteImport.update({
 const AuthenticatedProfilRoute = AuthenticatedProfilRouteImport.update({
   id: '/profil',
   path: '/profil',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedRendezVousRoute = AuthenticatedRendezVousRouteImport.update({
+  id: '/rendez-vous',
+  path: '/rendez-vous',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
 const AuthenticatedResultatsRoute = AuthenticatedResultatsRouteImport.update({
@@ -49,15 +75,23 @@ const AuthenticatedResultatsRoute = AuthenticatedResultatsRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
+  '/contact': typeof AuthenticatedContactRoute
+  '/informations': typeof AuthenticatedInformationsRoute
+  '/medicaments': typeof AuthenticatedMedicamentsRoute
   '/montre': typeof AuthenticatedMontreRoute
   '/profil': typeof AuthenticatedProfilRoute
+  '/rendez-vous': typeof AuthenticatedRendezVousRoute
   '/resultats': typeof AuthenticatedResultatsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
+  '/contact': typeof AuthenticatedContactRoute
+  '/informations': typeof AuthenticatedInformationsRoute
+  '/medicaments': typeof AuthenticatedMedicamentsRoute
   '/montre': typeof AuthenticatedMontreRoute
   '/profil': typeof AuthenticatedProfilRoute
+  '/rendez-vous': typeof AuthenticatedRendezVousRoute
   '/resultats': typeof AuthenticatedResultatsRoute
 }
 export interface FileRoutesById {
@@ -65,22 +99,48 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
   '/auth': typeof AuthRoute
+  '/_authenticated/contact': typeof AuthenticatedContactRoute
+  '/_authenticated/informations': typeof AuthenticatedInformationsRoute
+  '/_authenticated/medicaments': typeof AuthenticatedMedicamentsRoute
   '/_authenticated/montre': typeof AuthenticatedMontreRoute
   '/_authenticated/profil': typeof AuthenticatedProfilRoute
+  '/_authenticated/rendez-vous': typeof AuthenticatedRendezVousRoute
   '/_authenticated/resultats': typeof AuthenticatedResultatsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/auth' | '/montre' | '/profil' | '/resultats'
+  fullPaths:
+    | '/'
+    | '/auth'
+    | '/contact'
+    | '/informations'
+    | '/medicaments'
+    | '/montre'
+    | '/profil'
+    | '/rendez-vous'
+    | '/resultats'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/auth' | '/montre' | '/profil' | '/resultats'
+  to:
+    | '/'
+    | '/auth'
+    | '/contact'
+    | '/informations'
+    | '/medicaments'
+    | '/montre'
+    | '/profil'
+    | '/rendez-vous'
+    | '/resultats'
   id:
     | '__root__'
     | '/'
     | '/_authenticated'
     | '/auth'
+    | '/_authenticated/contact'
+    | '/_authenticated/informations'
+    | '/_authenticated/medicaments'
     | '/_authenticated/montre'
     | '/_authenticated/profil'
+    | '/_authenticated/rendez-vous'
     | '/_authenticated/resultats'
   fileRoutesById: FileRoutesById
 }
@@ -113,6 +173,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_authenticated/contact': {
+      id: '/_authenticated/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof AuthenticatedContactRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/informations': {
+      id: '/_authenticated/informations'
+      path: '/informations'
+      fullPath: '/informations'
+      preLoaderRoute: typeof AuthenticatedInformationsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/medicaments': {
+      id: '/_authenticated/medicaments'
+      path: '/medicaments'
+      fullPath: '/medicaments'
+      preLoaderRoute: typeof AuthenticatedMedicamentsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/montre': {
       id: '/_authenticated/montre'
       path: '/montre'
@@ -127,6 +208,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedProfilRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/rendez-vous': {
+      id: '/_authenticated/rendez-vous'
+      path: '/rendez-vous'
+      fullPath: '/rendez-vous'
+      preLoaderRoute: typeof AuthenticatedRendezVousRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/resultats': {
       id: '/_authenticated/resultats'
       path: '/resultats'
@@ -138,14 +226,22 @@ declare module '@tanstack/react-router' {
 }
 
 interface AuthenticatedRouteRouteChildren {
+  AuthenticatedContactRoute: typeof AuthenticatedContactRoute
+  AuthenticatedInformationsRoute: typeof AuthenticatedInformationsRoute
+  AuthenticatedMedicamentsRoute: typeof AuthenticatedMedicamentsRoute
   AuthenticatedMontreRoute: typeof AuthenticatedMontreRoute
   AuthenticatedProfilRoute: typeof AuthenticatedProfilRoute
+  AuthenticatedRendezVousRoute: typeof AuthenticatedRendezVousRoute
   AuthenticatedResultatsRoute: typeof AuthenticatedResultatsRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedContactRoute: AuthenticatedContactRoute,
+  AuthenticatedInformationsRoute: AuthenticatedInformationsRoute,
+  AuthenticatedMedicamentsRoute: AuthenticatedMedicamentsRoute,
   AuthenticatedMontreRoute: AuthenticatedMontreRoute,
   AuthenticatedProfilRoute: AuthenticatedProfilRoute,
+  AuthenticatedRendezVousRoute: AuthenticatedRendezVousRoute,
   AuthenticatedResultatsRoute: AuthenticatedResultatsRoute,
 }
 
