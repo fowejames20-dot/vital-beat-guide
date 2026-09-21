@@ -1,0 +1,123 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --font-sans: "Manrope", sans-serif;
+  --font-display: "DM Sans", sans-serif;
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-surface: var(--surface);
+  --color-surface-strong: var(--surface-strong);
+  --color-mint: var(--mint);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --shadow-soft: 0 18px 60px color-mix(in oklab, var(--primary) 14%, transparent);
+  --shadow-float: 0 8px 28px color-mix(in oklab, var(--foreground) 10%, transparent);
+}
+
+:root {
+  --radius: 0.75rem;
+  --background: oklch(0.975 0.013 164);
+  --foreground: oklch(0.22 0.035 174);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.22 0.035 174);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.22 0.035 174);
+  --primary: oklch(0.49 0.126 169);
+  --primary-foreground: oklch(0.99 0.005 160);
+  --secondary: oklch(0.91 0.06 166);
+  --secondary-foreground: oklch(0.31 0.075 170);
+  --muted: oklch(0.94 0.018 165);
+  --muted-foreground: oklch(0.51 0.03 174);
+  --accent: oklch(0.86 0.1 163);
+  --accent-foreground: oklch(0.28 0.07 171);
+  --destructive: oklch(0.59 0.2 27);
+  --destructive-foreground: oklch(0.99 0 0);
+  --border: oklch(0.88 0.03 165);
+  --input: oklch(0.89 0.025 165);
+  --ring: oklch(0.55 0.13 168);
+  --surface: oklch(0.955 0.035 164);
+  --surface-strong: oklch(0.84 0.095 166);
+  --mint: oklch(0.77 0.135 165);
+  --success: oklch(0.61 0.16 145);
+  --warning: oklch(0.78 0.15 82);
+  --chart-1: oklch(0.54 0.15 166);
+  --chart-2: oklch(0.73 0.15 148);
+  --chart-3: oklch(0.76 0.14 76);
+}
+
+@layer base {
+  * { border-color: var(--color-border); }
+  html { background: var(--background); }
+  body {
+    margin: 0;
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+    letter-spacing: 0;
+  }
+  button, input, textarea { font: inherit; }
+}
+
+@utility screen-enter {
+  animation: screen-enter 420ms cubic-bezier(.2,.75,.25,1) both;
+}
+
+@utility form-field {
+  transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+  &:focus-within {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 28px color-mix(in oklab, var(--primary) 12%, transparent);
+  }
+}
+
+@utility heart-pulse {
+  animation: heart-pulse 2.4s ease-in-out infinite;
+}
+
+@keyframes screen-enter {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes heart-pulse {
+  0%, 100% { transform: scale(1); }
+  14% { transform: scale(1.035); }
+  28% { transform: scale(1); }
+  42% { transform: scale(1.025); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+  }
+}
